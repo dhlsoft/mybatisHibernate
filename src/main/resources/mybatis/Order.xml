@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.zte.ngbc.mybatis.mapper.OrderMapper">
+
+	<!-- <cache /> -->
+
+	<insert id="insertOrder" parameterType="int" >
+		insert into
+		T_ORDER(ID,CLIENTNAME)
+		values(#{id},'mybatis-sa')
+	</insert>
+
+	<select id="getAllOrder" resultType="TOrder">
+		Select t.ID         id,
+		       t.CLIENTNAME clientname,
+		       t.AMOUNT     amount,
+		       t.CREATETIME createtime
+		  From T_ORDER t order by id desc
+	</select>
+	
+	<select id="getOrder" parameterType="int" resultType="TOrder">
+		Select t.ID         id,
+		       t.CLIENTNAME clientname,
+		       t.AMOUNT     amount,
+		       t.CREATETIME createtime
+		  From T_ORDER t where t.ID = #{id}
+	</select>
+	
+	<delete id="deleteOrder" parameterType="int">
+		delete From T_ORDER t where t.ID = #{id}
+	</delete>
+
+</mapper>
